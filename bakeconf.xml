@@ -432,7 +432,75 @@
       </build>
      </module>
 
-     <module name="iputils">
+    <module name="libnetfilter-conntrack-dev">
+      <source type="system_dependency">
+        <attribute name="post_download" value="" />
+        <attribute name="try_to_install" value="True" />
+        <attribute name="new_variable" value="" />
+        <attribute name="patch" value="" />
+        <attribute name="dependency_test" value="nf_conntrack_common.h" />
+        <attribute name="name_yum" value="libnetfilter_conntrack-devel" />
+        <attribute name="more_information" value="The libnetfilter-conntrack-dev library is not installed, try to install them (libnetfilter-conntrack-dev)" />
+        <attribute name="name_apt-get" value="libnetfilter-conntrack-dev" />
+        <attribute name="module_directory" value="" />
+      </source>
+      <build type="none">
+        <attribute name="v_LD_LIBRARY" value="" />
+        <attribute name="ignore_predefined_flags" value="False" />
+        <attribute name="pre_installation" value="" />
+        <attribute name="patch" value="" />
+        <attribute name="supported_os" value="" />
+        <attribute name="v_PATH" value="" />
+        <attribute name="no_installation" value="" />
+        <attribute name="new_variable" value="" />
+        <attribute name="objdir" value="no" />
+        <attribute name="post_installation" value="" />
+        <attribute name="v_PKG_CONFIG" value="" />
+      </build>
+    </module>
+    
+    <module name="libnfnetlink-dev">
+      <source type="system_dependency">
+        <attribute name="post_download" value="" />
+        <attribute name="try_to_install" value="True" />
+        <attribute name="new_variable" value="" />
+        <attribute name="patch" value="" />
+        <attribute name="dependency_test" value="nfnetlink.h" />
+        <attribute name="name_yum" value="libnfnetlink-devel" />
+        <attribute name="more_information" value="The libnfnetlink-dev library is not installed, try to install them (libnfnetlink-dev)" />
+        <attribute name="name_apt-get" value="libnfnetlink-dev" />
+        <attribute name="module_directory" value="" />
+      </source>
+      <build type="none">
+        <attribute name="v_LD_LIBRARY" value="" />
+        <attribute name="ignore_predefined_flags" value="False" />
+        <attribute name="pre_installation" value="" />
+        <attribute name="patch" value="" />
+        <attribute name="supported_os" value="" />
+        <attribute name="v_PATH" value="" />
+        <attribute name="no_installation" value="" />
+        <attribute name="new_variable" value="" />
+        <attribute name="objdir" value="no" />
+        <attribute name="post_installation" value="" />
+        <attribute name="v_PKG_CONFIG" value="" />
+      </build>
+    </module>
+    
+    <module name="iptables-1.4.21">
+      <source type="archive">
+        <attribute name="url" value="http://www.netfilter.org/projects/iptables/files/iptables-1.4.21.tar.bz2"/>
+      </source>
+      <build type="make" objdir="yes">
+        <attribute name="supported_os" value="linux;linux2"/>
+        <attribute name="pre_installation" value="cd $SRCDIR; $SRCDIR/configure LIBS='-pie -rdynamic' CFLAGS='-fPIC -g -U_FORTIFY_SOURCE' --with-xtlibdir=/lib/xtables --disable-shared --prefix=$INSTALLDIR"/>
+        <attribute name="no_installation" value="True"/>
+        <attribute name="post_installation" value="mkdir -p $INSTALLDIR/sbin; cp $SRCDIR/iptables/xtables-multi $INSTALLDIR/sbin"/>
+      </build>
+        <depends_on name="libnetfilter-conntrack-dev" optional="False" />
+        <depends_on name="libnfnetlink-dev" optional="False" />
+    </module>
+
+    <module name="iputils">
        <source type="archive">
          <attribute name="url" value="http://www.skbuff.net/iputils/iputils-s20101006.tar.bz2"/>
        </source>
